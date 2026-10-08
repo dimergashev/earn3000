@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Earn AED 2,000 · referral badge</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700&family=Outfit:wght@800&display=swap" rel="stylesheet">
+<title>Earn AED 2,000 · referral badge & hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--maroon:#6a2135;--cream:#f5ece0;--navy:#051634;--gold:#f7ce78;--gold2:#d9a84a}
+  :root{--maroon:#6a2135;--cream:#f5ece0;--navy:#051634;--gold:#f7ce78;--gold2:#d9a84a;--muted:#7d8695}
   *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#faf6f0;font-family:'Manrope',sans-serif}
+  body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:48px;background:#faf6f0;font-family:'Manrope',sans-serif;padding:40px}
+  .label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin:0 0 10px}
   /* ===== S-coin (SVG) ===== */
   .scoin{position:absolute;display:block}
   .scoin svg{display:block;width:100%;height:100%}
@@ -31,12 +32,70 @@
   @keyframes land{0%{opacity:0;transform:translateY(8px)}6%{opacity:1;transform:translateY(0)}96%{opacity:1}100%{opacity:0}}
   .badge .pile .scoin{animation:none;opacity:1}
 
+  /* ===== hero (Client page, top block) ===== */
+  .hero{position:relative;width:1160px;height:280px;border-radius:24px;background:var(--cream);overflow:hidden;display:flex;align-items:stretch}
+  .hero .left{position:relative;z-index:2;padding:48px 64px;display:flex;flex-direction:column;justify-content:center;gap:12px;width:560px}
+  .hero h2{font-family:'Outfit',sans-serif;font-weight:700;font-size:48px;line-height:1.05;letter-spacing:-.02em;color:var(--maroon);margin:0}
+  .hero p{margin:0;font-size:16px;line-height:1.45;color:var(--navy);max-width:440px}
+  .hero p b{font-weight:700}
+  .hero .card{position:relative;z-index:2;margin:32px 32px 32px auto;width:500px;background:#fff;border-radius:16px;padding:24px 28px;box-shadow:0 10px 24px rgba(5,22,52,.08)}
+  .hero .card h3{font-family:'Outfit',sans-serif;font-size:18px;margin:0 0 6px;color:var(--navy)}
+  .hero .card p{font-size:14px;color:var(--muted);margin:0 0 16px}
+  .hero .link{display:flex;gap:10px}
+  .hero .link span{flex:1;height:44px;border-radius:10px;background:var(--cream);display:flex;align-items:center;padding:0 16px;font-size:14px;font-weight:600;color:var(--navy)}
+  .hero .link em{font-style:normal;height:44px;border-radius:10px;background:var(--maroon);color:var(--cream);display:flex;align-items:center;padding:0 16px;font-size:14px;font-weight:600}
+  .hero .sky .scoin{top:-40px;animation:fall linear infinite}
+  .hero .pile{position:absolute;left:0;right:0;bottom:0;height:20%;z-index:1}
+  .hero .sky{position:absolute;inset:0;z-index:0}
+  .hero .pile .scoin{bottom:0;animation:none;opacity:1}
+
+
+  /* ===== F1 · Bounce: coin drops, bounces twice on the bottom edge, settles, fades ===== */
+  @keyframes bounce{0%{transform:translateY(0) rotateY(0);opacity:0}6%{opacity:1}55%{transform:translateY(var(--dy)) rotateY(360deg)}68%{transform:translateY(calc(var(--dy) - 26px)) rotateY(420deg)}80%{transform:translateY(var(--dy)) rotateY(480deg)}87%{transform:translateY(calc(var(--dy) - 8px)) rotateY(500deg)}92%{transform:translateY(var(--dy)) rotateY(520deg);opacity:1}100%{transform:translateY(var(--dy)) rotateY(520deg);opacity:0}}
+  .f1 .sky .scoin{top:-16px;animation:bounce cubic-bezier(.45,0,.9,.6) infinite}
+  /* ===== F2 · Sway: coin drifts down swinging left-right like a leaf ===== */
+  @keyframes sway-y{0%{transform:translateY(0);opacity:0}8%{opacity:1}90%{opacity:1}100%{transform:translateY(var(--dy));opacity:0}}
+  @keyframes sway-x{0%,100%{transform:translateX(-14px) rotate(-18deg)}50%{transform:translateX(14px) rotate(18deg)}}
+  .f2 .sky .scoin{top:-16px;animation:sway-y linear infinite}
+  .f2 .sky .scoin svg{animation:sway-x 1.6s ease-in-out infinite}
+  /* ===== F3 · Fountain: coins shoot up from the bottom centre and fall back in arcs ===== */
+  @keyframes fountain{0%{transform:translate(0,0) scale(.6) rotateY(0);opacity:0}8%{opacity:1}40%{transform:translate(calc(var(--dx)*.7),var(--up)) scale(1) rotateY(180deg)}100%{transform:translate(var(--dx),24px) scale(1) rotateY(540deg);opacity:0}}
+  .f3 .sky .scoin{top:auto;bottom:34px;left:50%;margin-left:-8px;animation:fountain 2.6s cubic-bezier(.2,.6,.6,1) infinite}
+  .f3 .pile .scoin{animation:none;opacity:1}
+
+  /* ===== pile variants ===== */
+  /* side-view coin (disc) */
+  .disc{position:absolute;height:5px;border-radius:3px;background:linear-gradient(#ffe3a3,#d9a84a);box-shadow:inset 0 -1px 0 rgba(106,33,53,.45),inset 0 1px 0 rgba(255,255,255,.5)}
+  /* P1 · heap: mound of discs, tallest in the middle; falling coins flatten as they hit */
+  @keyframes fall-flat{0%{transform:translateY(0) rotateX(0);opacity:0}8%{opacity:1}86%{transform:translateY(calc(var(--dy) - 10px)) rotateX(0) rotateY(360deg)}96%{transform:translateY(var(--dy)) rotateX(78deg) rotateY(360deg);opacity:1}100%{transform:translateY(var(--dy)) rotateX(78deg);opacity:0}}
+  .p1 .sky .scoin,.p2 .sky .scoin,.p4 .sky .scoin{top:-16px;animation:fall-flat linear infinite}
+  .p1 .pile .disc{animation:none}
+  /* P2 · flat scatter: landed coins lie flat (perspective ellipses), scattered, overlapping */
+  .flat{position:absolute;border-radius:50%;background:radial-gradient(ellipse at 40% 35%,#ffe3a3,#f7ce78 55%,#d9a84a);box-shadow:inset 0 0 0 1.4px rgba(106,33,53,.4),0 2px 0 rgba(106,33,53,.35)}
+  .flat::after{content:'$';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 9px/1 Outfit,sans-serif;color:#6a2135;transform:scaleY(.42)}
+  /* P3 · stacks: five columns of discs, discs appear bottom-up over the cycle */
+  @keyframes stackup{0%{opacity:0;transform:translateY(-10px)}5%{opacity:1;transform:translateY(0)}96%{opacity:1}100%{opacity:0}}
+  .p3 .pile .disc{animation:stackup 12s ease-out infinite}
+  @keyframes fall-stack{0%{transform:translateY(0) rotateY(0);opacity:0}8%{opacity:1}90%{opacity:1;transform:translateY(var(--dy)) rotateY(540deg)}100%{transform:translateY(var(--dy)) rotateY(540deg);opacity:0}}
+  .p3 .sky .scoin{top:-16px;animation:fall-stack cubic-bezier(.5,0,.9,.5) infinite}
+  /* P4 · land in place: each coin falls to its own slot and stays; after all landed the pile resets */
+  @keyframes land-stay{0%{transform:translateY(0) rotateY(0);opacity:0}4%{opacity:1}var(--t)%{transform:translateY(var(--dy)) rotateY(360deg);opacity:1}96%{transform:translateY(var(--dy)) rotateY(360deg);opacity:1}100%{transform:translateY(var(--dy)) rotateY(360deg);opacity:0}}
+  .p4 .sky .scoin{animation-name:land4;animation-duration:12s;animation-timing-function:cubic-bezier(.45,0,.85,.55);animation-iteration-count:infinite}
+  @keyframes land4{0%{transform:translateY(0) rotateY(0);opacity:0}3%{opacity:1}22%{transform:translateY(var(--dy)) rotateY(360deg)}26%{transform:translateY(calc(var(--dy) - 10px)) rotateY(380deg)}30%{transform:translateY(var(--dy)) rotateY(400deg);opacity:1}95%{transform:translateY(var(--dy)) rotateY(400deg);opacity:1}100%{transform:translateY(var(--dy)) rotateY(400deg);opacity:0}}
   
   @media (prefers-reduced-motion:reduce){.scoin,.btn::after{animation:none!important}}
+  @media (max-width:1240px){.hero{transform:scale(calc((100vw - 80px)/1160));transform-origin:top left} .herowrap{height:calc(280px*(100vw - 80px)/1160)}}
 </style>
 </head>
 <body>
-<a class="badge" id="badge" href="#" aria-label="Refer a friend, earn AED 2,000"><div class="sky"></div><div class="pile"></div><div class="sum">Earn AED 2,000</div><div class="btn">Refer a friend</div></a>
+<div><p class="label">Sidebar badge</p>
+<a class="badge" id="badge" href="#" aria-label="Refer a friend, earn AED 2,000"><div class="sky"></div><div class="pile"></div><div class="sum">Earn AED 2,000</div><div class="btn">Refer a friend</div></a></div>
+<div class="herowrap"><p class="label">Referral page · hero</p>
+<div class="hero" id="hero">
+  <div class="sky"></div><div class="pile"></div>
+  <div class="left"><h2>Earn AED 2,000</h2><p>for every business you refer that purchases an Accounting &amp; Tax package with <b>15% off</b>.</p></div>
+  <div class="card"><h3>Your referral link</h3><p>Send it any way you like. It opens our offer page with 15% off for your friend.</p><div class="link"><span>https://skrooge.ai/referral/?ref=SK-7F3K2Q</span><em>Copy link</em></div></div>
+</div></div>
 <script>
 const scoin = (size, extra='') => `<span class="scoin" style="width:${size}px;height:${size}px;${extra}"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="g" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ffe3a3"/><stop offset=".55" stop-color="#f7ce78"/><stop offset="1" stop-color="#d9a84a"/></radialGradient></defs><circle cx="12" cy="12" r="11.2" fill="url(#g)" stroke="#6a2135" stroke-opacity=".45" stroke-width="1.6"/><circle cx="12" cy="12" r="8.2" fill="none" stroke="#6a2135" stroke-opacity=".3" stroke-width="1"/><text x="12" y="16.3" text-anchor="middle" font-family="Outfit, Montserrat, sans-serif" font-weight="800" font-size="12.5" fill="#6a2135">$</text></svg></span>`;
 
@@ -65,11 +124,12 @@ const binHeap = (w,h,id,opts={}) => {
 
 const b = document.getElementById('badge');
 const bsky = b.querySelector('.sky'), bpile = b.querySelector('.pile');
-[8,40,75,118,150,186,215,232,60,170].forEach((x,i)=>{
-  const d = 12 + (i%3)*3;
-  bsky.insertAdjacentHTML('beforeend', scoin(d, `left:${x}px;--dy:${200+d}px;animation-duration:${(4+(i*.7)%3).toFixed(1)}s;animation-delay:${(-(i*1.3)%6).toFixed(1)}s`));
-});
+[8,40,75,118,150,186,215,232,60,170].forEach((x,i)=>{ const d = 12 + (i%3)*3; bsky.insertAdjacentHTML('beforeend', scoin(d, `left:${x}px;--dy:${200+d}px;animation-duration:${(4+(i*.7)%3).toFixed(1)}s;animation-delay:${(-(i*1.3)%6).toFixed(1)}s`)); });
 bpile.innerHTML = binHeap(248,36,'hb6',{seed:5,cell:16,min:4,max:10});
+const h = document.getElementById('hero');
+const hsky = h.querySelector('.sky'), hpile = h.querySelector('.pile');
+for (let i=0;i<18;i++){ const x = 20 + ((i*131) % 1120), d = 22 + (i%4)*6; hsky.insertAdjacentHTML('beforeend', scoin(d, `left:${x}px;--dy:${300+d}px;animation-duration:${(5+(i*.9)%4).toFixed(1)}s;animation-delay:${(-(i*1.7)%9).toFixed(1)}s`)); }
+hpile.innerHTML = binHeap(1160,56,'hh6',{seed:5,cell:120,min:6,max:15});
 </script>
 </body>
 </html>

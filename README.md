@@ -1,4 +1,4 @@
-# Earn AED 2,000 · referral badge
+# Earn AED 2,000 · referral badge & hero
 
 Sidebar referral badge for the Skrooge client cabinet ($-coins). Maroon card, `Earn AED 2,000` headline, cream `Refer a friend` button. No medallion.
 
@@ -9,3 +9,7 @@ Animation, pure CSS (coins are inline SVG with a maroon "$"):
 - everything switches off under `prefers-reduced-motion`.
 
 Open `index.html` directly, no build step. Figma: Website Pages → Page 31 → `Referral badge / S coins`.
+
+## Referral page hero
+
+Same page shows the top block of the Referral page (1160×280): headline, subline and the "Your referral link" card. 18 larger $-coins fall across the whole width behind the content (5–9 s loops) and a money-bin heap fills the bottom 20% (seeded, 6–15 px coins). Below 1240 px the block scales down to fit.
