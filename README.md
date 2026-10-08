@@ -1,10 +1,11 @@
-# Earn AED 3,000 · referral badge
+# Earn AED 2,000 · referral badge
 
-Sidebar referral badge for the Skrooge client cabinet (variant M2 · coins). Maroon card, navy medallion with a gold coin, `Earn AED 3,000` headline, cream `Refer a friend` button.
+Sidebar referral badge for the Skrooge client cabinet (S-coins). Maroon card, `Earn AED 2,000` headline, cream `Refer a friend` button. No medallion.
 
-Animation, pure CSS, no icon fonts or JS:
-- gold coins rain down continuously, each with its own speed and offset (4–7 s loops);
-- the medallion coin flips once and a highlight sweeps across the button, in sync, every 5.6 s (the flip and the sweep take the first second of the cycle);
+Animation, pure CSS (coins are inline SVG with a maroon "S"):
+- 10 coins rain from the top, spinning, each with its own speed and offset (4–7 s loops);
+- a pile grows along the bottom edge: 13 coins appear one by one (~1.1 s apart) over a 14 s cycle, then it resets;
+- a highlight sweeps across the button every 5.6 s;
 - everything switches off under `prefers-reduced-motion`.
 
-Open `index.html` directly, no build step. Figma: Website Pages → Page 31 → `Referral badge / M2 coins`.
+Open `index.html` directly, no build step. Figma: Website Pages → Page 31 → `Referral badge / S coins`.
